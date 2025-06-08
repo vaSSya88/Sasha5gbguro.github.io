@@ -73,14 +73,20 @@
         </div>
     </header>
     
-    <div class="container">
+<div class="container">
         <div class="content">
             <h2>Добро пожаловать</h2>
-            <p>Это пример страницы, похожей на godlikestrike.github.io/adapter/gs.html</p>
+            <p>Нажмите на кнопки ниже, чтобы открыть разные ссылки:</p>
             
-            <a href="#" class="button" id="actionButton">account</a>
+            <div class="button-container">
+                <button class="button" id="linkButton1">GitHub</button>
+                <button class="button" id="linkButton2">Google</button>
+                <button class="button" id="linkButton3">YouTube</button>
+            </div>
             
-            <div id="result"></div>
+            <div class="link-preview" id="linkPreview">
+                Нажмите любую кнопку, чтобы увидеть ссылку
+            </div>
         </div>
     </div>
     
@@ -91,8 +97,36 @@
     </footer>
     
     <script>
-        document.getElementById('actionButton').addEventListener('click', function() {
-            document.getElementById('result').innerHTML = '<p>Действие выполнено!</p>';
+        // Ссылки для кнопок
+        const links = {
+            linkButton1: {
+                url: "https://github.com",
+                name: "GitHub - Крупнейший хостинг кода"
+            },
+            linkButton2: {
+                url: "https://google.com",
+                name: "Google - Поисковая система"
+            },
+            linkButton3: {
+                url: "https://youtube.com",
+                name: "YouTube - Видеохостинг"
+            }
+        };
+        
+        // Обработчики для всех кнопок
+        Object.keys(links).forEach(buttonId => {
+            document.getElementById(buttonId).addEventListener('click', function() {
+                const link = links[buttonId];
+                
+                // Показываем информацию о ссылке
+                document.getElementById('linkPreview').innerHTML = 
+                    <strong>Открыта ссылка:</strong> ${link.name}<br>
+                    <a href="${link.url}" target="_blank">${link.url}</a>
+                ;
+                
+                // Открываем ссылку в новом окне
+                window.open(link.url, '_blank');
+            });
         });
     </script>
 </body>

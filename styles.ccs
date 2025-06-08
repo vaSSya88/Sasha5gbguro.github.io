@@ -1,1 +1,5 @@
-
+<style>
+.angled-gradient {
+  background: linear-gradient(70deg, pink, white);
+}
+</style>
